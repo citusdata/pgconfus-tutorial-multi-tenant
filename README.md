@@ -2,13 +2,13 @@
 
 ## Create the schema
 
-```
+```sql
 \i schema.sql
 ```
 
 ## Load sample data using COPY
 
-```
+```sql
 \copy users (user_id, email, encrypted_password) FROM 'data/users.csv' WITH (format CSV)
 \copy stores (store_id, user_id, name, category) FROM 'data/stores.csv' WITH (format CSV)
 \copy products (store_id, product_id, name, description, product_details, price) FROM 'data/products.csv' WITH (format CSV)
@@ -18,7 +18,7 @@
 
 ## INSERT INTO SELECT to load additional data
 
-```
+```sql
 INSERT INTO users SELECT * FROM tutorial.users;
 INSERT INTO stores SELECT * FROM tutorial.stores;
 INSERT INTO products SELECT * FROM tutorial.products;
@@ -28,7 +28,7 @@ INSERT INTO line_items SELECT * FROM tutorial.line_items;
 
 ## Changing the schema
 
-```
+```sql
 ALTER TABLE products ADD short_id text NULL;
 SELECT master_modify_multiple_shards('UPDATE products SET short_id = substring(product_id::text from 0 for 14)');
 ALTER TABLE products ALTER COLUMN short_id SET NOT NULL;
