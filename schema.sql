@@ -100,7 +100,7 @@ CREATE TABLE line_items (
   line_amount numeric(20,2) NOT NULL,
   created_at timestamptz NOT NULL DEFAULT now(),
   updated_at timestamptz NOT NULL DEFAULT now(),
-  PRIMARY KEY (store_id, order_id),
+  PRIMARY KEY (store_id, line_item_id),
   FOREIGN KEY (store_id) REFERENCES stores (store_id),
   FOREIGN KEY (store_id, order_id) REFERENCES orders (store_id, order_id),
   FOREIGN KEY (store_id, product_id) REFERENCES products (store_id, product_id)
