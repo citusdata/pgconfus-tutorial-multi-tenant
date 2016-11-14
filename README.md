@@ -34,3 +34,13 @@ SELECT master_modify_multiple_shards('UPDATE products SET short_id = substring(p
 ALTER TABLE products ALTER COLUMN short_id SET NOT NULL;
 CREATE UNIQUE INDEX products_short_id ON products(store_id, short_id);
 ```
+
+## Running queries
+
+See `queries.sql`
+
+## Accessing worker nodes
+
+Run `SELECT master_get_active_worker_nodes()` and copy one of the hostnames starting with `ec2-` and ending in `.com`.
+
+Take the connection string you get from the Citus Cloud dashboard, and replace the coordinator hostname (starting with `c.` and ending in `.com`) with the worker hostname. Then simply use psql to connect to the worker (username, password, port and database name are the same).
