@@ -5,13 +5,18 @@ You will require a Citus Cloud formation for this tutorial, with the tutorial da
 In case you want to follow this at home, contact us in Slack or on the website,
 and we'd be happy to set you up with a tutorial formation.
 
+## 0. Requirements
+
+* Citus Cloud tutorial formation (hand-out)
+* PostgreSQL client on your laptop
+
 ## 1. Create the schema and load data
 
-Follow each section in `schema_and_data.md`
+Follow each section in [schema_and_data.md](https://github.com/citusdata/pgconfus-tutorial-multi-tenant/blob/master/schema_and_data.md)
 
 ## 2. Follow the tutorial
 
-Follow each section in `tutorial.md`
+Follow each section in [tutorial.md](https://github.com/citusdata/pgconfus-tutorial-multi-tenant/blob/master/tutorial.md)
 
 ## How to access worker nodes
 
