@@ -7,10 +7,10 @@ require 'faker'
 require 'csv'
 require 'json'
 
-user_count = 1 # 100
+user_count = 100
 stores_per_user = 1..2
 products_per_store = 10..50
-orders_per_store = 1000..10000
+orders_per_store = 100..1000
 line_items_per_order = 1..5
 
 categories = ['Art', 'Electronics', 'Entertainment', 'Fashion', 'Home & Garden', 'Sporting Goods', 'Other']
