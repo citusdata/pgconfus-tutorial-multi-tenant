@@ -18,7 +18,9 @@ Follow each section in [schema_and_data.md](https://github.com/citusdata/pgconfu
 
 Follow each section in [tutorial.md](https://github.com/citusdata/pgconfus-tutorial-multi-tenant/blob/master/tutorial.md)
 
-## How to access worker nodes
+---
+
+**Note: How to access worker nodes**
 
 Run `SELECT nodename, nodeport FROM pg_dist_node` and copy one of the hostnames starting with `ec2-` and ending in `.com`.
 
