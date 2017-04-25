@@ -1,19 +1,3 @@
-## Show meta data tables
-
-```sql
---List of distributed tables.
-SELECT logicalrelid,partkey,colocationid FROM pg_dist_partition;
-
---Shards for the stores table
-SELECT logicalrelid,shardid,shardminvalue,shardmaxvalue from pg_dist_shard where logicalrelid='stores'::regclass;
-
---Shard placements
-SELECT shardid,nodename FROM pg_dist_shard_placement;
-
---Check colocation
-SELECT s.logicalrelid,s.shardid,p.nodename from pg_dist_shard s, pg_dist_shard_placement p where s.shardid=p.shardid and s.shardminvalue::integer=-2147483648 and s.shardmaxvalue::integer=-2013265921;
-```
-
 ## Basic queries
 
 ```sql
@@ -154,4 +138,20 @@ ALTER TABLE products ADD short_id text NULL;
 SELECT master_modify_multiple_shards('UPDATE products SET short_id = substring(product_id::text from 0 for 14)');
 ALTER TABLE products ALTER COLUMN short_id SET NOT NULL;
 CREATE UNIQUE INDEX products_short_id ON products(store_id, short_id);
+```
+
+## Show meta data tables
+
+```sql
+--List of distributed tables.
+SELECT logicalrelid,partkey,colocationid FROM pg_dist_partition;
+
+--Shards for the stores table
+SELECT logicalrelid,shardid,shardminvalue,shardmaxvalue from pg_dist_shard where logicalrelid='stores'::regclass;
+
+--Shard placements
+SELECT shardid,nodename FROM pg_dist_shard_placement;
+
+--Check colocation
+SELECT s.logicalrelid,s.shardid,p.nodename from pg_dist_shard s, pg_dist_shard_placement p where s.shardid=p.shardid and s.shardminvalue::integer=-2147483648 and s.shardmaxvalue::integer=-2013265921;
 ```
