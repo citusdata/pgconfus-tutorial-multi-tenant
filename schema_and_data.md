@@ -93,9 +93,9 @@ SELECT create_distributed_table('line_items', 'store_id');
 ## Load data
 
 ```sql
-INSERT INTO users SELECT * FROM tutorial.users;
-INSERT INTO stores SELECT * FROM tutorial.stores;
-INSERT INTO products SELECT * FROM tutorial.products;
-INSERT INTO orders SELECT * FROM tutorial.orders;
-INSERT INTO line_items SELECT * FROM tutorial.line_items;
+\copy users(user_id, email, encrypted_password) FROM 'users.csv' WITH (FORMAT 'csv')
+\copy stores(store_id, user_id, name, category) FROM 'stores.csv' WITH (FORMAT 'csv')
+\copy products(store_id, product_id, name, description, product_details, price) FROM 'products.csv' WITH (FORMAT 'csv')
+\copy orders(store_id, order_id, status, total_amount, shipping_address, billing_address, shipping_info, ordered_at) FROM 'orders.csv' WITH (FORMAT 'csv')
+\copy line_items(store_id, order_id, product_id, quantity, line_amount) FROM 'line_items.csv' WITH (FORMAT 'csv')
 ```
