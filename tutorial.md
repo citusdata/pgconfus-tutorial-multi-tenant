@@ -62,20 +62,20 @@ SELECT COUNT(*) FROM line_items WHERE store_id = 'ba581249-d824-45cf-aace-2ca30b
 --Approach #1 - join on product_id, store_id and place a filter for store_id on only one of the table.
 SELECT sum(l.quantity) from
 line_items l INNER JOIN products p ON l.product_id=p.product_id AND l.store_id=p.store_id
-WHERE p.name='Small Bronze Computer' AND l.created_at>='2017-03-01 00:00:00' AND L.created_at<='2017-03-30 23:59:59'
+WHERE p.name='Small Bronze Computer' AND l.created_at>='2017-04-01 00:00:00' AND L.created_at<='2017-04-30 23:59:59'
 AND l.store_id='ba581249-d824-45cf-aace-2ca30b7b3b0e';
 
 --Approach #2 - join on just the product_id and place filters for store_id on both the  tables.
 
 SELECT sum(l.quantity) from
 line_items l INNER JOIN products p ON l.product_id=p.product_id
-WHERE p.name='Small Bronze Computer' AND l.created_at>='2017-03-01 00:00:00' AND L.created_at<='2017-03-30 23:59:59'
+WHERE p.name='Small Bronze Computer' AND l.created_at>='2017-04-01 00:00:00' AND L.created_at<='2017-04-30 23:59:59'
 AND l.store_id='ba581249-d824-45cf-aace-2ca30b7b3b0e' AND p.store_id='ba581249-d824-45cf-aace-2ca30b7b3b0e';
 
 --Explain the above query
 EXPLAIN SELECT sum(l.quantity) from
 line_items l INNER JOIN products p ON l.product_id=p.product_id
-WHERE p.name='Small Bronze Computer' AND l.created_at>='2017-03-01 00:00:00' AND L.created_at<='2017-03-30 23:59:59'
+WHERE p.name='Small Bronze Computer' AND l.created_at>='2017-04-01 00:00:00' AND L.created_at<='2017-04-30 23:59:59'
 AND l.store_id='ba581249-d824-45cf-aace-2ca30b7b3b0e' AND p.store_id='ba581249-d824-45cf-aace-2ca30b7b3b0e';
 
 --Three table join
