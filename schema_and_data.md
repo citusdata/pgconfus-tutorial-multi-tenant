@@ -81,10 +81,7 @@ CREATE TABLE line_items (
   line_amount numeric(20,2) NOT NULL,
   created_at timestamptz NOT NULL DEFAULT now(),
   updated_at timestamptz NOT NULL DEFAULT now(),
-  PRIMARY KEY (store_id, line_item_id),
-  FOREIGN KEY (store_id) REFERENCES stores (store_id),
-  FOREIGN KEY (store_id, order_id) REFERENCES orders (store_id, order_id),
-  FOREIGN KEY (store_id, product_id) REFERENCES products (store_id, product_id)
+  PRIMARY KEY (store_id, line_item_id)
 );
 
 SELECT create_distributed_table('line_items', 'store_id');
@@ -93,9 +90,5 @@ SELECT create_distributed_table('line_items', 'store_id');
 ## Load data
 
 ```sql
-\copy users(user_id, email, encrypted_password) FROM 'users.csv' WITH (FORMAT 'csv')
-\copy stores(store_id, user_id, name, category) FROM 'stores.csv' WITH (FORMAT 'csv')
-\copy products(store_id, product_id, name, description, product_details, price) FROM 'products.csv' WITH (FORMAT 'csv')
-\copy orders(store_id, order_id, status, total_amount, shipping_address, billing_address, shipping_info, ordered_at) FROM 'orders.csv' WITH (FORMAT 'csv')
-\copy line_items(store_id, order_id, product_id, quantity, line_amount) FROM 'line_items.csv' WITH (FORMAT 'csv')
+SELECT load_tutorial_data();
 ```
